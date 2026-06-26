@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مؤسسة إبراهيم حميدي العنزي للمقاولات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1e3f;
+    --navy-light: #15294d;
+    --navy-deep: #061229;
+    --gold: #c9a227;
+    --gold-light: #e0bf45;
+    --gold-deep: #a8851d;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #e5e7eb;
+    --dark: #111827;
+    --shadow-lg: 0 25px 50px -12px rgba(10, 30, 63, 0.25);
+    --shadow-md: 0 10px 30px rgba(10, 30, 63, 0.12);
+    --shadow-sm: 0 4px 12px rgba(10, 30, 63, 0.08);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(6, 18, 41, 0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    transition: all 0.3s ease;
+  }
+  .nav-container {
+    max-width: 1300px; margin: 0 auto; padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between; height: 80px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; }
+  .nav-logo svg { width: 44px; height: 44px; flex-shrink: 0; }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .nav-logo-text .main { font-size: 1.05rem; font-weight: 800; color: var(--white); }
+  .nav-logo-text .sub { font-size: 0.72rem; font-weight: 500; color: var(--gold); letter-spacing: 0.5px; }
+  .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    color: rgba(255, 255, 255, 0.8); text-decoration: none;
+    font-size: 0.95rem; font-weight: 500; transition: color 0.2s; position: relative;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -6px; right: 0;
+    width: 0; height: 2px; background: var(--gold); transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--gold); color: var(--navy-deep);
+    padding: 0.65rem 1.5rem; border-radius: 50px;
+    font-weight: 700; font-size: 0.9rem; text-decoration: none;
+    transition: all 0.3s; border: none; cursor: pointer;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201, 162, 39, 0.35); }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 5px; }
+  .nav-toggle span { width: 25px; height: 3px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; overflow: hidden; background: var(--navy-deep);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80');
+    background-size: cover; background-position: center; opacity: 0.35;
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(6,18,41,0.92) 0%, rgba(10,30,63,0.85) 50%, rgba(6,18,41,0.95) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; max-width: 1300px; margin: 0 auto;
+    padding: 7rem 2rem 4rem; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center; width: 100%;
+  }
+  .hero-text h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+    color: var(--white); line-height: 1.25; margin-bottom: 1.5rem;
+  }
+  .hero-text h1 .highlight { color: var(--gold-light); }
+  .hero-text p {
+    font-size: 1.15rem; color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2rem; max-width: 520px; line-height: 1.9;
+  }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy-deep);
+    padding: 1rem 2.2rem; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    border: none; cursor: pointer; transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(201, 162, 39, 0.4); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 1rem 2.2rem; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer; transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    backdrop-filter: blur(10px); border-radius: var(--radius);
+    padding: 2rem 1.5rem; text-align: center; transition: all 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-5px); border-color: var(--gold); background: rgba(201, 162, 39, 0.08); }
+  .stat-card .number { font-size: 2.5rem; font-weight: 900; color: var(--gold-light); display: block; margin-bottom: 0.25rem; }
+  .stat-card .label { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); font-weight: 500; }
+
+  .scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    z-index: 3; color: rgba(255, 255, 255, 0.5); font-size: 0.8rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+
+  /* ===== SECTION GENERAL ===== */
+  section { padding: 6rem 2rem; }
+  .section-container { max-width: 1300px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-badge {
+    display: inline-block; background: rgba(201, 162, 39, 0.1);
+    color: var(--gold-deep); padding: 0.4rem 1.2rem;
+    border-radius: 50px; font-size: 0.85rem; font-weight: 700;
+    margin-bottom: 1rem; border: 1px solid rgba(201, 162, 39, 0.2);
+  }
+  .section-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; color: var(--navy); margin-bottom: 1rem; }
+  .section-header p { font-size: 1.1rem; color: var(--gray); max-width: 600px; margin: 0 auto; }
+
+  /* ===== SERVICES ===== */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .service-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 2.5rem; box-shadow: var(--shadow-sm);
+    transition: all 0.4s ease; border: 1px solid var(--gray-light);
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 100%; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0); transform-origin: right; transition: transform 0.4s;
+  }
+  .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 64px; height: 64px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+  }
+  .service-icon svg { width: 32px; height: 32px; color: var(--gold-light); }
+  .service-card h3 { font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+  .service-card p { color: var(--gray); font-size: 0.98rem; line-height: 1.8; }
+
+  /* ===== PROJECTS GALLERY ===== */
+  .projects { background: var(--navy-deep); position: relative; }
+  .projects .section-header h2 { color: var(--white); }
+  .projects .section-header p { color: rgba(255,255,255,0.6); }
+  .projects .section-badge { background: rgba(201, 162, 39, 0.15); color: var(--gold-light); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    aspect-ratio: 4/5; cursor: pointer; box-shadow: var(--shadow-md);
+  }
+  .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .project-card:hover img { transform: scale(1.1); }
+  .project-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(6,18,41,0.95) 0%, rgba(6,18,41,0.3) 50%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2rem; transition: opacity 0.3s;
+  }
+  .project-overlay .tag {
+    background: var(--gold); color: var(--navy-deep);
+    padding: 0.3rem 0.9rem; border-radius: 50px;
+    font-size: 0.75rem; font-weight: 700; width: fit-content; margin-bottom: 0.75rem;
+  }
+  .project-overlay h3 { color: var(--white); font-size: 1.3rem; font-weight: 700; }
+  .project-overlay p {
+    color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem;
+    opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s;
+  }
+  .project-card:hover .project-overlay p { opacity: 1; max-height: 100px; }
+
+  /* ===== WHY US ===== */
+  .why-us { background: var(--cream); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; }
+  .feature-item { padding: 2rem 1.5rem; }
+  .feature-num { font-size: 3.5rem; font-weight: 900; color: rgba(201, 162, 39, 0.15); display: block; margin-bottom: 0.5rem; line-height: 1; }
+  .feature-item h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+  .feature-item p { color: var(--gray); font-size: 0.95rem; }
+
+  /* ===== TEAM ===== */
+  .team { background: var(--white); }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+  .team-card {
+    background: var(--cream);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s ease;
+    border: 1px solid var(--gray-light);
+    text-align: center;
+  }
+  .team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  .team-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+    background: var(--navy-deep);
+  }
+  .team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .team-card:hover .team-image img { transform: scale(1.08); }
+  .team-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6,18,41,0.6) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .team-body { padding: 1.75rem 1.5rem; }
+  .team-body h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .team-role {
+    display: inline-block;
+    background: rgba(201, 162, 39, 0.12);
+    color: var(--gold-deep);
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+  }
+  .team-body p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .team-socials {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .team-socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .team-socials a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .team-socials svg { width: 16px; height: 16px; color: var(--navy); }
+  .team-socials a:hover svg { color: var(--navy-deep); }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials { background: var(--cream); }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .testimonial-card {
+    background: var(--cream); border-radius: var(--radius);
+    padding: 2.5rem; position: relative; border: 1px solid var(--gray-light);
+  }
+  .testimonial-card::before {
+    content: '\201C'; position: absolute; top: 1rem; left: 1.5rem;
+    font-size: 5rem; color: var(--gold); opacity: 0.2; font-family: Georgia, serif; line-height: 1;
+  }
+  .testimonial-stars { display: flex; gap: 0.2rem; margin-bottom: 1rem; color: var(--gold); font-size: 1.1rem; }
+  .testimonial-card p { color: var(--dark); font-size: 1rem; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+  .author-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light); font-weight: 700; font-size: 1.1rem;
+  }
+  .author-info .name { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+  .author-info .role { font-size: 0.82rem; color: var(--gray); }
+
+  /* ===== MAP / LOCATION ===== */
+  .location { background: var(--cream); }
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    align-items: stretch;
+  }
+  .location-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .location-info h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .location-info > p {
+    color: var(--gray);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+  }
+  .location-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .location-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--gray-light);
+    transition: all 0.3s;
+  }
+  .location-item:hover {
+    border-color: var(--gold);
+    transform: translateX(-5px);
+    box-shadow: var(--shadow-sm);
+  }
+  .location-item .icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .location-item .icon-box svg {
+    width: 22px;
+    height: 22px;
+    color: var(--gold-light);
+  }
+  .location-item .text-box .label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .location-item .text-box .value {
+    font-size: 1rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .location-cta {
+    margin-top: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    width: fit-content;
+  }
+  .location-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(201, 162, 39, 0.35);
+  }
+  .map-wrapper {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 3px solid var(--white);
+    min-height: 420px;
+    position: relative;
+  }
+  .map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border: 0;
+    display: block;
+    filter: grayscale(0.2) contrast(1.1);
+    transition: filter 0.3s;
+  }
+  .map-wrapper:hover iframe {
+    filter: grayscale(0) contrast(1);
+  }
+  @media (max-width: 968px) {
+    .location-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== CTA BANNER ===== */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: ''; position: absolute; top: -50%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,162,39,0.1) 0%, transparent 70%); border-radius: 50%;
+  }
+  .cta-banner h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; color: var(--white); margin-bottom: 1rem; position: relative; }
+  .cta-banner p { color: rgba(255,255,255,0.7); font-size: 1.15rem; margin-bottom: 2rem; max-width: 500px; margin-inline: auto; position: relative; }
+
+  /* ===== FOOTER ===== */
+  .footer { background: var(--navy-deep); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; }
+  .footer-container { max-width: 1300px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; }
+  .footer-col h4 { color: var(--white); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-contact-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; font-size: 0.92rem; }
+  .footer-contact-item svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .footer-logo svg { width: 48px; height: 48px; }
+  .footer-logo-text .main { color: var(--white); font-weight: 800; font-size: 1.05rem; }
+  .footer-logo-text .sub { color: var(--gold); font-size: 0.72rem; }
+  .footer-bottom {
+    max-width: 1300px; margin: 3rem auto 0; padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem; font-size: 0.85rem;
+  }
+  .footer-social { display: flex; gap: 1rem; }
+  .footer-social a {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); display: flex; align-items: center;
+    justify-content: center; transition: all 0.3s;
+  }
+  .footer-social a:hover { background: var(--gold); transform: translateY(-3px); }
+  .footer-social svg { width: 18px; height: 18px; color: rgba(255,255,255,0.7); }
+  .footer-social a:hover svg { color: var(--navy-deep); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 968px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-stats { margin-top: 2rem; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; position: absolute; top: 80px; right: 0; left: 0;
+      background: var(--navy-deep); flex-direction: column; padding: 2rem; gap: 1.5rem;
+    }
+    .nav-links.active { display: flex; }
+    .nav-toggle { display: flex; }
+    .nav-cta { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .hero-buttons { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+    section { padding: 4rem 1rem; }
+    .hero-content { padding-top: 6rem; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e0bf45"/>
+            <stop offset="100%" style="stop-color:#a8851d"/>
+          </linearGradient>
+        </defs>
+        <polygon points="50,5 90,27 90,73 50,95 10,73 10,27" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+        <rect x="30" y="35" width="16" height="40" fill="url(#goldGrad)" rx="1"/>
+        <rect x="48" y="25" width="22" height="50" fill="#ffffff" rx="1"/>
+        <rect x="52" y="30" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="60" y="30" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="52" y="38" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="60" y="38" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="52" y="46" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="60" y="46" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="52" y="54" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="60" y="54" width="4" height="4" fill="#0a1e3f"/>
+        <rect x="33" y="42" width="3" height="3" fill="#0a1e3f"/>
+        <rect x="39" y="42" width="3" height="3" fill="#0a1e3f"/>
+        <rect x="33" y="50" width="3" height="3" fill="#0a1e3f"/>
+        <rect x="39" y="50" width="3" height="3" fill="#0a1e3f"/>
+        <rect x="20" y="75" width="60" height="3" fill="url(#goldGrad)" rx="1"/>
+        <polygon points="59,18 65,25 53,25" fill="#ffffff"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="main">إبراهيم حميدي العنزي</span>
+        <span class="sub">للمقاولات</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#projects">مشاريعنا</a></li>
+      <li><a href="#team">الفريق الفني</a></li>
+      <li><a href="#why">لماذا نحن</a></li>
+      <li><a href="#location">موقعنا</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">اطلب عرض سعر</a>
+    <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>نبني المستقبل<br><span class="highlight">بأساس متين</span></h1>
+      <p>مؤسسة إبراهيم حميدي العنزي للمقاولات — خبرة تتجاوز ربع قرن في تنفيذ المشاريع الإنشائية الكبرى بأعلى معايير الجودة والاحترافية في المملكة العربية السعودية.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn-primary">شاهد أعمالنا</a>
+        <a href="#contact" class="btn-outline">تواصل معنا</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="number">+25</span>
+        <span class="label">سنة خبرة</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">+500</span>
+        <span class="label">مشروع منجز</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">+1200</span>
+        <span class="label">عميل سعيد</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">%100</span>
+        <span class="label">التزام بالمواعيد</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>اكتشف المزيد</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-badge">خدماتنا</span>
+      <h2>حلول مقاولات متكاملة</h2>
+      <p>نقدم باقة شاملة من الخدمات الإنشائية بأعلى المعايير العالمية وفريق عمل متخصص</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 9h0M15 9h0M9 13h0M15 13h0"/>
+          </svg>
+        </div>
+        <h3>المباني الإنشائية</h3>
+        <p>تنفيذ المباني السكنية والتجارية والإدارية بكافة أنواعها، من الحفر وحتى التشطيب، وفق أحدث المعايير الهندسية.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-6h6v6M7 12h10"/>
+          </svg>
+        </div>
+        <h3>أعمال الطرق والبنية التحتية</h3>
+        <p>إنشاء وتعبيد الطرق، أعمال الصرف الصحي، وشبكات المياه والكهرباء، ومشاريع البنية التحتية المدنية المتكاملة.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>أعمال الخرسانة المسلحة</h3>
+        <p>صب وتجهيز الخرسانة المسلحة بكافة أنواعها، للأساسات والأعمدة والأسقف، مع ضمان الجودة والمتانة.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8"/>
+          </svg>
+        </div>
+        <h3>الدراسات والاستشارات الهندسية</h3>
+        <p>دراسات الجدوى الفنية، الاستشارات الهندسية، والإشراف على تنفيذ المشاريع لضمان أعلى جودة وفعالية.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.27 6.96 12 12.01l8.73-5.05 M12 22.08V12"/>
+          </svg>
+        </div>
+        <h3>توريد مواد البناء</h3>
+        <p>توريد أجود أنواع مواد البناء: الإسمنت، الحديد، البلوك، والرمال، بأسعار تنافسية وجودة مضمونة.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16l7-3 7 3z"/>
+          </svg>
+        </div>
+        <h3>أعمال التشطيبات</h3>
+        <p>تشطيبات داخلية وخارجية، أعمال الدهان، البلاط، الجبس، والديكورات بأعلى مستويات الإتقان والجودة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="projects" id="projects">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-badge">معرض الأعمال</span>
+      <h2>أحدث مشاريعنا المنجزة</h2>
+      <p>نماذج من المشاريع التي نفذناها بكفاءة عالية وجودة تناسب طموحات عملائنا</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="مجمع تجاري">
+        <div class="project-overlay">
+          <span class="tag">مجمع تجاري</span>
+          <h3>برج الأعمال التجاري</h3>
+          <p>مجمع تجاري متكامل بمساحة 25,000 م² يضم مكاتب ومحلات تجارية</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80" alt="مبنى سكني">
+        <div class="project-overlay">
+          <span class="tag">مباني سكنية</span>
+          <h3>فلل الندى السكنية</h3>
+          <p>45 فيلا فاخرة بتصميم عصري ومرافق متكاملة</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80" alt="مشروع صناعي">
+        <div class="project-overlay">
+          <span class="tag">منشآت صناعية</span>
+          <h3>مصنع المنطقة الصناعية</h3>
+          <p>منشأة صناعية متكاملة بمساحة 15,000 م² بمواصفات عالمية</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80" alt="بنية تحتية">
+        <div class="project-overlay">
+          <span class="tag">بنية تحتية</span>
+          <h3>مشروع تطوير الطرق</h3>
+          <p>تطوير وتعبيد شبكة طرق بطول 12 كم مع شبكات الصرف</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80" alt="مبنى إداري">
+        <div class="project-overlay">
+          <span class="tag">مباني إدارية</span>
+          <h3>المقر الإداري الجديد</h3>
+          <p>مبنى إداري حديث بتصميم معماري متميز ومساحات عمل مرنة</p>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80" alt="مشروع معماري">
+        <div class="project-overlay">
+          <span class="tag">مشاريع معمارية</span>
+          <h3>مركز المؤتمرات</h3>
+          <p>مركز مؤتمرات حديث يتسع لأكثر من 800 شخص بتقنيات متقدمة</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="why-us" id="why">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-badge">لماذا نحن</span>
+      <h2>ما يميز مؤسستنا</h2>
+      <p>نلتزم بأعلى المعايير لنمنح عملاءنا أفضل النتائج</p>
+    </div>
+    <div class="why-grid">
+      <div class="feature-item reveal">
+        <span class="feature-num">01</span>
+        <h3>جودة لا تتنازل</h3>
+        <p>نستخدم أجود المواد وأحدث التقنيات ونلتزم بأعلى معايير الجودة العالمية في كل مشروع.</p>
+      </div>
+      <div class="feature-item reveal">
+        <span class="feature-num">02</span>
+        <h3>التزام بالمواعيد</h3>
+        <p>سجل حافل بتسليم المشاريع في موعدها المحدد دون تأخير، مع مراعاة أعلى معايير الأمان.</p>
+      </div>
+      <div class="feature-item reveal">
+        <span class="feature-num">03</span>
+        <h3>فريق محترف</h3>
+        <p>نخبة من المهندسين والفنيين المتخصصين الحاصلين على شهادات احترافية معتمدة.</p>
+      </div>
+      <div class="feature-item reveal">
+        <span class="feature-num">04</span>
+        <h3>أسعار تنافسية</h3>
+        <p>نوفر أفضل الأسعار في السوق دون التنازل عن الجودة، مع شفافية كاملة في العروض المالية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="team" id="team">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-badge">فريقنا الفني</span>
+      <h2>الكوادر الفنية والقيادية</h2>
+      <p>نخبة من المهندسين والفنيين الحاصلين على أعلى الشهادات الاحترافية يقودون مشاريعكم نحو النجاح</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card reveal">
+        <div class="team-image">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="م. إبراهيم حميدي العنزي">
+        </div>
+        <div class="team-body">
+          <h3>م. إبراهيم حميدي العنزي</h3>
+          <span class="team-role">المؤسس والمدير العام</span>
+          <p>خبرة تتجاوز 25 عاماً في إدارة المشاريع الإنشائية الكبرى، حاصل على بكالوريوس هندسة مدنية وشهادات إدارة المشاريع الاحترافية PMP.</p>
+          <div class="team-socials">
+            <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+            <a href="#" aria-label="بريد إلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-image">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="م. خالد الشمري">
+        </div>
+        <div class="team-body">
+          <h3>م. خالد الشمري</h3>
+          <span class="team-role">مدير المشاريع التنفيذي</span>
+          <p>مهندس مدني متخصص في إدارة وتنفيذ المشاريع الإنشائية الضخمة، يشرف على جميع المواقع الإنشائية ويضمن الجودة والالتزام بالمواعيد.</p>
+          <div class="team-socials">
+            <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+            <a href="#" aria-label="بريد إلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-image">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f34?w=600&q=80" alt="م. نورة العتيبي">
+        </div>
+        <div class="team-body">
+          <h3>م. نورة العتيبي</h3>
+          <span class="team-role">رئيسة قسم الهندسة الإنشائية</span>
+          <p>مهندسة إنشائية متخصصة في تصميم وتنفيذ الهياكل الخرسانية والمعدنية، حاصلة على ماجستير في الهندسة الإنشائية.</p>
+          <div class="team-socials">
+            <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+            <a href="#" aria-label="بريد إلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-image">
+          <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=600&q=80" alt="م. عبدالرحمن السبيعي">
+        </div>
+        <div class="team-body">
+          <h3>م. عبدالرحمن السبيعي</h3>
+          <span class="team-role">مدير الجودة والسلامة</span>
+          <p>خبير في إدارة الجودة والسلامة المهنية، يضمن تطبيق أعلى معايير الأمان في جميع مواقع العمل ومراقبة جودة المواد والتنفيذ.</p>
+          <div class="team-socials">
+            <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+            <a href="#" aria-label="بريد إلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-image">
+          <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&q=80" alt="م. سارة الدوسري">
+        </div>
+        <div class="team-body">
+          <h3>م. سارة الدوسري</h3>
+          <span class="team-role">مديرة العقود والمشتريات</span>
+          <p>متخصصة في إدارة العقود الحكومية والخاصة، المناقصات، وإدارة سلسلة التوريد لضمان توريد المواد بأفضل الأسعار والجودة.</p>
+          <div class="team-socials">
+            <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+            <a href="#" aria-label="بريد إلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-image">
+          <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=600&q=80" alt="م. فهد القحطاني">
+        </div>
+        <div class="team-body">
+          <h3>م. فهد القحطاني</h3>
+          <span class="team-role">مدير المواقع الإنشائية</span>
+          <p>مهندس موقع أول بخبرة واسعة في الإشراف الميداني، يدير فرق التنفيذ في المواقع ويضمن سير العمل بكفاءة وفق الخطة المعتمدة.</p>
+          <div class="team-socials">
+            <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+            <a href="#" aria-label="بريد إلكتروني"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-badge">آراء عملائنا</span>
+      <h2>ماذا قالوا عنا</h2>
+      <p>ثقة عملائنا هي أكبر إنجازاتنا</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>مؤسسة محترفة بمعنى الكلمة. نفذوا لنا المشروع في وقت قياسي وجودة فاقت توقعاتنا. أنصح بالتعامل معهم بقوة.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">ع.م</div>
+          <div class="author-info">
+            <div class="name">عبدالله المطيري</div>
+            <div class="role">مدير مشاريع - شركة المرافئ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>التعامل راقي والمصداقية عالية. سلموا المشروع قبل الموعد المتفق عليه. شكراً لفريق المؤسسة.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">س.ا</div>
+          <div class="author-info">
+            <div class="name">سعود القحطاني</div>
+            <div class="role">مستثمر عقاري</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>أفضل مؤسسة مقاولات تعاملنا معها. الالتزام بالمواعيد والجودة العالية والأسعار المنافسة. تعامل مريح وموثوق.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">ف.د</div>
+          <div class="author-info">
+            <div class="name">فهد الدوسري</div>
+            <div class="role">مالك مجموعة شركات</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION / MAP ============ -->
+<section class="location" id="location">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-badge">موقعنا</span>
+      <h2>مكتبنا الرئيسي</h2>
+      <p>نحن في خدمتكم على مدار الأسبوع - زورونا في مقرنا الرئيسي أو تواصلوا معنا في أي وقت</p>
+    </div>
+    <div class="location-grid">
+
+      <div class="location-info reveal">
+        <div>
+          <h3>مؤسسة إبراهيم حميدي العنزي للمقاولات</h3>
+          <p>المقر الرئيسي للمؤسسة في قلب العاصمة الرياض، يسهل الوصول إليه من جميع أنحاء المدينة. يسعدنا استقبالكم لمناقشة مشاريعكم وتقديم الاستشارات الهندسية المتخصصة.</p>
+        </div>
+
+        <div class="location-details">
+          <div class="location-item">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="text-box">
+              <div class="label">العنوان</div>
+              <div class="value">طريق الملك فهد، حي العليا، الرياض</div>
+            </div>
+          </div>
+
+          <div class="location-item">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="text-box">
+              <div class="label">الهاتف</div>
+              <div class="value" dir="ltr">+966 11 200 0000</div>
+            </div>
+          </div>
+
+          <div class="location-item">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="text-box">
+              <div class="label">البريد الإلكتروني</div>
+              <div class="value">info@ibrahim-hamidi.com</div>
+            </div>
+          </div>
+
+          <div class="location-item">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="text-box">
+              <div class="label">ساعات العمل</div>
+              <div class="value">الأحد - الخميس: 8 ص - 6 م</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=24.7136,46.6753" target="_blank" rel="noopener" class="location-cta">
+          الاتجاهات على Google Maps
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </a>
+      </div>
+
+      <div class="map-wrapper reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=24.7136,46.6753&z=13&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="موقع مؤسسة إبراهيم حميدي العنزي للمقاولات">
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="cta-banner" id="contact">
+  <div class="section-container">
+    <h2>جاهز لبدء مشروعك القادم؟</h2>
+    <p>تواصل معنا اليوم واحصل على استشارة وعرض سعر مجاني لمشروعك خلال 24 ساعة</p>
+    <a href="mailto:info@ibrahim-hamidi.com" class="btn-primary">اطلب عرض سعر مجاني</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#e0bf45"/>
+                <stop offset="100%" style="stop-color:#a8851d"/>
+              </linearGradient>
+            </defs>
+            <polygon points="50,5 90,27 90,73 50,95 10,73 10,27" fill="none" stroke="url(#goldGrad2)" stroke-width="3"/>
+            <rect x="30" y="35" width="16" height="40" fill="url(#goldGrad2)" rx="1"/>
+            <rect x="48" y="25" width="22" height="50" fill="#ffffff" rx="1"/>
+            <rect x="52" y="30" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="60" y="30" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="52" y="38" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="60" y="38" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="52" y="46" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="60" y="46" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="52" y="54" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="60" y="54" width="4" height="4" fill="#0a1e3f"/>
+            <rect x="20" y="75" width="60" height="3" fill="url(#goldGrad2)" rx="1"/>
+            <polygon points="59,18 65,25 53,25" fill="#ffffff"/>
+          </svg>
+          <div class="footer-logo-text">
+            <span class="main">إبراهيم حميدي العنزي</span>
+            <span class="sub">للمقاولات</span>
+          </div>
+        </div>
+        <p style="font-size:0.92rem; max-width:280px;">مؤسسة رائدة في مجال المقاولات والإنشاءات في المملكة العربية السعودية، نقدم حلولاً متكاملة بأعلى معايير الجودة.</p>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#projects">مشاريعنا</a></li>
+          <li><a href="#team">الفريق الفني</a></li>
+          <li><a href="#why">لماذا نحن</a></li>
+          <li><a href="#location">موقعنا</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>خدماتنا</h4>
+        <ul>
+          <li><a href="#services">المباني الإنشائية</a></li>
+          <li><a href="#services">الطرق والبنية التحتية</a></li>
+          <li><a href="#services">الخرسانة المسلحة</a></li>
+          <li><a href="#services">الاستشارات الهندسية</a></li>
+          <li><a href="#services">توريد مواد البناء</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>الرياض، المملكة العربية السعودية</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span dir="ltr">+966 50 000 0000</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>info@ibrahim-hamidi.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 مؤسسة إبراهيم حميدي العنزي للمقاولات. جميع الحقوق محفوظة.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="تويتر"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+        <a href="#" aria-label="لينكدإن"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+        <a href="#" aria-label="إنستغرام"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85 0-3.2.01-3.58.07-4.85.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.style.background = 'rgba(6, 18, 41, 0.95)';
+      navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+    } else {
+      navbar.style.background = 'rgba(6, 18, 41, 0.85)';
+      navbar.style.boxShadow = 'none';
+    }
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => { navLinks.classList.remove('active'); });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('active'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const animateCount = (el, target) => {
+    const isPercent = target.includes('%');
+    const isPlus = target.includes('+');
+    const num = parseInt(target.replace(/[^0-9]/g, ''));
+    let current = 0;
+    const step = num / 40;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= num) { current = num; clearInterval(timer); }
+      let display = Math.floor(current);
+      el.textContent = (isPlus ? '+' : '') + display + (isPercent ? '%' : '');
+    }, 30);
+  };
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target.querySelector('.number');
+        const target = el.textContent;
+        animateCount(el, target);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-card').forEach(card => statObserver.observe(card));
+</script>
+
+</body>
+</html>
