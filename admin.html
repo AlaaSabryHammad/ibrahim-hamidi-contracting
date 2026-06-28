@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - مؤسسة إبراهيم حميدي العنزي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1e3f;
+    --navy-light: #15294d;
+    --navy-deep: #061229;
+    --gold: #c9a227;
+    --gold-light: #e0bf45;
+    --gold-deep: #a8851d;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #e5e7eb;
+    --dark: #111827;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --green: #059669;
+    --green-light: #ecfdf5;
+    --shadow-lg: 0 25px 50px -12px rgba(10, 30, 63, 0.25);
+    --shadow-md: 0 10px 30px rgba(10, 30, 63, 0.12);
+    --shadow-sm: 0 4px 12px rgba(10, 30, 63, 0.08);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  /* ===== HEADER ===== */
+  .admin-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  .admin-header h1 {
+    font-size: 1.3rem; font-weight: 800;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .admin-header h1 .icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--gold); color: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+  .btn {
+    padding: 0.7rem 1.5rem; border-radius: 50px;
+    font-weight: 700; font-size: 0.9rem; cursor: pointer;
+    border: none; transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--navy-deep);
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201, 162, 39, 0.35); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+  .btn-danger { background: var(--red); color: var(--white); }
+  .btn-danger:hover { background: #b91c1c; }
+  .btn-save {
+    background: var(--green); color: var(--white);
+  }
+  .btn-save:hover { background: #047857; }
+  .btn-sm { padding: 0.4rem 1rem; font-size: 0.82rem; }
+
+  /* ===== TABS ===== */
+  .tabs {
+    display: flex; gap: 0; background: var(--white);
+    padding: 0 2rem; border-bottom: 2px solid var(--gray-light);
+    position: sticky; top: 73px; z-index: 90;
+  }
+  .tab-btn {
+    padding: 1rem 2rem; background: none; border: none;
+    font-family: 'Tajawal', sans-serif; font-size: 1rem; font-weight: 700;
+    color: var(--gray); cursor: pointer; position: relative;
+    transition: color 0.2s;
+  }
+  .tab-btn:hover { color: var(--navy); }
+  .tab-btn.active { color: var(--navy); }
+  .tab-btn.active::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 3px; background: var(--gold); border-radius: 3px 3px 0 0;
+  }
+  .tab-btn .count {
+    background: var(--gray-light); color: var(--gray);
+    padding: 0.1rem 0.6rem; border-radius: 50px; font-size: 0.75rem;
+    margin-right: 0.4rem;
+  }
+  .tab-btn.active .count { background: rgba(201, 162, 39, 0.15); color: var(--gold-deep); }
+
+  /* ===== MAIN ===== */
+  .admin-main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ===== CARDS GRID ===== */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  .item-card {
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); overflow: hidden;
+    border: 1px solid var(--gray-light); transition: all 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .item-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .item-image {
+    width: 100%; aspect-ratio: 16/10; object-fit: cover;
+    background: var(--gray-light);
+  }
+  .item-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+  .item-tag {
+    display: inline-block; background: rgba(201, 162, 39, 0.1); color: var(--gold-deep);
+    padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    margin-bottom: 0.5rem; width: fit-content;
+  }
+  .item-body h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
+  .item-role { font-size: 0.85rem; color: var(--gold-deep); font-weight: 600; margin-bottom: 0.5rem; }
+  .item-body p { font-size: 0.88rem; color: var(--gray); flex: 1; margin-bottom: 1rem; }
+  .item-actions { display: flex; gap: 0.5rem; }
+  .item-actions .btn { flex: 1; justify-content: center; }
+
+  /* ===== ADD CARD ===== */
+  .add-card {
+    border: 2px dashed var(--gray-light); background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; min-height: 280px; transition: all 0.3s;
+  }
+  .add-card:hover { border-color: var(--gold); background: rgba(201, 162, 39, 0.03); }
+  .add-card-content { text-align: center; color: var(--gray); }
+  .add-card-content .plus {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--gray-light); color: var(--gray);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 1rem; transition: all 0.3s;
+  }
+  .add-card:hover .plus { background: var(--gold); color: var(--navy-deep); }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(6, 18, 41, 0.7);
+    backdrop-filter: blur(5px); z-index: 1000;
+    display: none; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--white); border-radius: var(--radius);
+    max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+  }
+  .modal-header {
+    padding: 1.5rem 2rem; border-bottom: 1px solid var(--gray-light);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .modal-header h2 { font-size: 1.3rem; font-weight: 800; color: var(--navy); }
+  .modal-close {
+    background: none; border: none; font-size: 1.5rem; cursor: pointer;
+    color: var(--gray); transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--red); }
+  .modal-body { padding: 2rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label {
+    display: block; font-weight: 700; color: var(--navy);
+    margin-bottom: 0.4rem; font-size: 0.9rem;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--gray-light);
+    border-radius: 12px; font-family: 'Tajawal', sans-serif; font-size: 0.95rem;
+    color: var(--dark); transition: border-color 0.2s; background: var(--cream);
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--gold); background: var(--white);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+
+  /* Image upload area */
+  .img-upload {
+    border: 2px dashed var(--gray-light); border-radius: 12px;
+    padding: 1.5rem; text-align: center; cursor: pointer;
+    transition: all 0.3s; background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .img-upload:hover { border-color: var(--gold); }
+  .img-upload img { max-width: 100%; max-height: 200px; border-radius: 8px; margin-bottom: 0.5rem; }
+  .img-upload .upload-text { color: var(--gray); font-size: 0.88rem; }
+  .img-upload .upload-text strong { color: var(--gold-deep); display: block; margin-bottom: 0.2rem; }
+
+  .modal-footer {
+    padding: 1.25rem 2rem; border-top: 1px solid var(--gray-light);
+    display: flex; gap: 0.75rem; justify-content: flex-start;
+  }
+
+  /* ===== PUBLISH BAR ===== */
+  .publish-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--navy-deep); color: var(--white);
+    padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.2); z-index: 80;
+    transform: translateY(100%); transition: transform 0.3s;
+  }
+  .publish-bar.show { transform: translateY(0); }
+  .publish-bar .info { display: flex; align-items: center; gap: 0.75rem; }
+  .publish-bar .dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--gold);
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed; top: 90px; right: 2rem; z-index: 2000;
+    background: var(--white); border-radius: 12px;
+    padding: 1rem 1.5rem; box-shadow: var(--shadow-lg);
+    display: flex; align-items: center; gap: 0.75rem;
+    border-right: 4px solid var(--green); font-weight: 600;
+    transform: translateX(120%); transition: transform 0.4s;
+    max-width: 400px;
+  }
+  .toast.show { transform: translateX(0); }
+  .toast.error { border-right-color: var(--red); }
+  .toast .toast-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--green-light); color: var(--green);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .toast.error .toast-icon { background: var(--red-light); color: var(--red); }
+
+  /* ===== EMPTY STATE ===== */
+  .empty-state { text-align: center; padding: 4rem 2rem; color: var(--gray); }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .admin-header { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .header-actions { width: 100%; justify-content: center; }
+    .tabs { padding: 0 0.5rem; }
+    .tab-btn { padding: 0.75rem 1rem; font-size: 0.9rem; }
+    .admin-main { padding: 1rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .modal { max-width: 100%; }
+    .publish-bar { flex-direction: column; gap: 0.75rem; padding: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="admin-header">
+  <h1>
+    <span class="icon">⚙️</span>
+    لوحة تحكم المؤسسة
+  </h1>
+  <div class="header-actions">
+    <button class="btn btn-outline" onclick="window.open('index.html', '_blank')">👁️ معاينة الموقع</button>
+    <button class="btn btn-gold" id="publishBtn">🚀 نشر على الموقع</button>
+  </div>
+</header>
+
+<!-- ===== TABS ===== -->
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="projects" onclick="switchTab('projects')">
+    <span class="count" id="projectsCount">0</span> المشاريع
+  </button>
+  <button class="tab-btn" data-tab="team" onclick="switchTab('team')">
+    <span class="count" id="teamCount">0</span> الفريق الفني
+  </button>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main class="admin-main">
+
+  <!-- PROJECTS TAB -->
+  <div class="tab-content active" id="tab-projects">
+    <div class="cards-grid" id="projectsGrid">
+      <!-- loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- TEAM TAB -->
+  <div class="tab-content" id="tab-team">
+    <div class="cards-grid" id="teamGrid">
+      <!-- loaded dynamically -->
+    </div>
+  </div>
+
+</main>
+
+<!-- ===== PUBLISH BAR ===== -->
+<div class="publish-bar" id="publishBar">
+  <div class="info">
+    <span class="dot"></span>
+    <span>عندك تغييرات لم تُنشر بعد</span>
+  </div>
+  <button class="btn btn-gold" id="publishBtn2">🚀 نشر الآن</button>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">إضافة جديد</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="itemForm" onsubmit="return false">
+        <div class="form-group">
+          <label>الصورة</label>
+          <div class="img-upload" id="imgUpload" onclick="document.getElementById('imgInput').click()">
+            <div class="upload-text" id="uploadText">
+              <strong>📷 اختر صورة</strong>
+              اضغط هنا لرفع صورة من جهازك
+            </div>
+            <input type="file" id="imgInput" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+            <img id="imgPreview" style="display:none">
+          </div>
+          <input type="hidden" id="field-image">
+          <small style="color:var(--gray)">أو الصق رابط صورة مباشر:</small>
+          <input type="text" id="field-imageUrl" placeholder="https://..." style="margin-top:0.3rem" oninput="syncImageUrl(this)">
+        </div>
+
+        <div class="form-group" id="group-tag">
+          <label>تصنيف المشروع</label>
+          <input type="text" id="field-tag" placeholder="مثال: مجمع تجاري، مباني سكنية...">
+        </div>
+
+        <div class="form-group" id="group-role" style="display:none">
+          <label>المسمى الوظيفي</label>
+          <input type="text" id="field-role" placeholder="مثال: مدير المشاريع">
+        </div>
+
+        <div class="form-group">
+          <label id="label-title">عنوان المشروع</label>
+          <input type="text" id="field-title" placeholder="اسم المشروع" required>
+        </div>
+
+        <div class="form-group">
+          <label id="label-desc">الوصف</label>
+          <textarea id="field-desc" placeholder="وصف تفصيلي..." required></textarea>
+        </div>
+
+        <div class="form-group" id="group-name" style="display:none">
+          <label>الاسم</label>
+          <input type="text" id="field-name" placeholder="اسم الشخص">
+        </div>
+
+        <input type="hidden" id="field-id">
+        <input type="hidden" id="field-type">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-save" onclick="saveItem()">💾 حفظ</button>
+      <button class="btn btn-outline" style="color:var(--gray);border-color:var(--gray-light)" onclick="closeModal()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toastIcon">✓</div>
+  <span id="toastMsg">تم الحفظ</span>
+</div>
+
+<script>
+let data = { projects: [], team: [] };
+let currentTab = 'projects';
+let uploadedImage = '';
+
+// ===== Load data =====
+async function loadData() {
+  try {
+    const res = await fetch('/api/data');
+    data = await res.json();
+    renderAll();
+  } catch (e) {
+    showToast('خطأ في تحميل البيانات', 'error');
+  }
+}
+
+// ===== Render =====
+function renderAll() {
+  renderProjects();
+  renderTeam();
+  document.getElementById('projectsCount').textContent = data.projects.length;
+  document.getElementById('teamCount').textContent = data.team.length;
+}
+
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  let html = data.projects.map(p => `
+    <div class="item-card">
+      <img class="item-image" src="${p.image}" alt="${p.title}">
+      <div class="item-body">
+        <span class="item-tag">${p.tag}</span>
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+        <div class="item-actions">
+          <button class="btn btn-outline btn-sm" style="color:var(--navy);border-color:var(--gray-light)" onclick="editItem('projects','${p.id}')">✏️ تعديل</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteItem('projects','${p.id}')">🗑️ حذف</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  html += `
+    <div class="item-card add-card" onclick="openAddModal('projects')">
+      <div class="add-card-content">
+        <div class="plus">+</div>
+        <strong>إضافة مشروع جديد</strong>
+      </div>
+    </div>
+  `;
+  grid.innerHTML = html;
+}
+
+function renderTeam() {
+  const grid = document.getElementById('teamGrid');
+  let html = data.team.map(t => `
+    <div class="item-card">
+      <img class="item-image" src="${t.image}" alt="${t.name}" style="aspect-ratio:1/1;object-fit:cover">
+      <div class="item-body">
+        <h3>${t.name}</h3>
+        <span class="item-role">${t.role}</span>
+        <p>${t.bio}</p>
+        <div class="item-actions">
+          <button class="btn btn-outline btn-sm" style="color:var(--navy);border-color:var(--gray-light)" onclick="editItem('team','${t.id}')">✏️ تعديل</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteItem('team','${t.id}')">🗑️ حذف</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  html += `
+    <div class="item-card add-card" onclick="openAddModal('team')">
+      <div class="add-card-content">
+        <div class="plus">+</div>
+        <strong>إضافة عضو جديد</strong>
+      </div>
+    </div>
+  `;
+  grid.innerHTML = html;
+}
+
+// ===== Tab switching =====
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === 'tab-' + tab));
+}
+
+// ===== Modal =====
+let editingType = null;
+let editingId = null;
+
+function openAddModal(type) {
+  editingType = type;
+  editingId = null;
+  resetForm();
+  setupFormForType(type);
+  document.getElementById('modalTitle').textContent = type === 'projects' ? 'إضافة مشروع جديد' : 'إضافة عضو فريق';
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function editItem(type, id) {
+  const item = data[type].find(x => x.id === id);
+  if (!item) return;
+  editingType = type;
+  editingId = id;
+  resetForm();
+  setupFormForType(type);
+
+  if (type === 'projects') {
+    document.getElementById('field-tag').value = item.tag || '';
+    document.getElementById('field-title').value = item.title || '';
+    document.getElementById('field-desc').value = item.description || '';
+  } else {
+    document.getElementById('field-name').value = item.name || '';
+    document.getElementById('field-role').value = item.role || '';
+    document.getElementById('field-title').value = item.name || '';
+    document.getElementById('field-desc').value = item.bio || '';
+  }
+
+  // Set image
+  if (item.image) {
+    document.getElementById('imgPreview').src = item.image;
+    document.getElementById('imgPreview').style.display = 'block';
+    document.getElementById('uploadText').style.display = 'none';
+    uploadedImage = item.image;
+    document.getElementById('field-imageUrl').value = item.image.startsWith('data:') ? '' : item.image;
+  }
+
+  document.getElementById('modalTitle').textContent = type === 'projects' ? 'تعديل مشروع' : 'تعديل عضو فريق';
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function setupFormForType(type) {
+  const isProject = type === 'projects';
+  document.getElementById('group-tag').style.display = isProject ? 'block' : 'none';
+  document.getElementById('group-role').style.display = isProject ? 'none' : 'block';
+  document.getElementById('group-name').style.display = isProject ? 'none' : 'block';
+  document.getElementById('label-title').textContent = isProject ? 'عنوان المشروع' : 'الاسم الكامل';
+  document.getElementById('label-desc').textContent = isProject ? 'الوصف' : 'نبذة';
+  document.getElementById('field-type').value = type;
+}
+
+function resetForm() {
+  document.getElementById('itemForm').reset();
+  document.getElementById('imgPreview').style.display = 'none';
+  document.getElementById('uploadText').style.display = 'block';
+  document.getElementById('field-image').value = '';
+  document.getElementById('field-imageUrl').value = '';
+  uploadedImage = '';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+// ===== Image upload =====
+function handleImageUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    uploadedImage = e.target.result;
+    document.getElementById('imgPreview').src = uploadedImage;
+    document.getElementById('imgPreview').style.display = 'block';
+    document.getElementById('uploadText').style.display = 'none';
+    document.getElementById('field-imageUrl').value = '';
+  };
+  reader.readAsDataURL(file);
+}
+
+function syncImageUrl(input) {
+  if (input.value) {
+    uploadedImage = input.value;
+    document.getElementById('imgPreview').src = input.value;
+    document.getElementById('imgPreview').style.display = 'block';
+    document.getElementById('uploadText').style.display = 'none';
+  }
+}
+
+// ===== Save =====
+async function saveItem() {
+  const type = document.getElementById('field-type').value;
+  const image = uploadedImage || document.getElementById('field-imageUrl').value;
+
+  if (!image) { showToast('من فضلك اختر صورة', 'error'); return; }
+
+  let item = { id: editingId || generateId(type) };
+
+  if (type === 'projects') {
+    item.tag = document.getElementById('field-tag').value.trim();
+    item.title = document.getElementById('field-title').value.trim();
+    item.description = document.getElementById('field-desc').value.trim();
+    item.image = image;
+    if (!item.title || !item.description) { showToast('املأ كل الحقول المطلوبة', 'error'); return; }
+  } else {
+    item.name = document.getElementById('field-name').value.trim() || document.getElementById('field-title').value.trim();
+    item.role = document.getElementById('field-role').value.trim();
+    item.bio = document.getElementById('field-desc').value.trim();
+    item.image = image;
+    if (!item.name || !item.bio) { showToast('املأ كل الحقول المطلوبة', 'error'); return; }
+  }
+
+  if (editingId) {
+    const idx = data[type].findIndex(x => x.id === editingId);
+    if (idx >= 0) data[type][idx] = item;
+  } else {
+    data[type].push(item);
+  }
+
+  await saveData();
+  renderAll();
+  closeModal();
+  showPublishBar();
+  showToast(editingId ? 'تم التحديث' : 'تمت الإضافة');
+}
+
+function generateId(prefix) {
+  return (prefix === 'projects' ? 'p' : 't') + Date.now();
+}
+
+// ===== Delete =====
+async function deleteItem(type, id) {
+  if (!confirm('متأكد إنك عاوز تحذف ده؟')) return;
+  data[type] = data[type].filter(x => x.id !== id);
+  await saveData();
+  renderAll();
+  showPublishBar();
+  showToast('تم الحذف');
+}
+
+// ===== API calls =====
+async function saveData() {
+  try {
+    const res = await fetch('/api/data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await res.json();
+  } catch (e) {
+    showToast('خطأ في الحفظ', 'error');
+  }
+}
+
+// ===== Publish =====
+async function publish() {
+  const btn = document.getElementById('publishBtn');
+  const btn2 = document.getElementById('publishBtn2');
+  [btn, btn2].forEach(b => { if (b) { b.disabled = true; b.textContent = '⏳ جاري النشر...'; }});
+
+  try {
+    const res = await fetch('/api/publish', { method: 'POST' });
+    const result = await res.json();
+    if (result.success) {
+      showToast('🚀 تم النشر بنجاح! الموقع متحدث');
+      hidePublishBar();
+    } else {
+      showToast('خطأ: ' + (result.message || 'فشل النشر'), 'error');
+    }
+  } catch (e) {
+    showToast('خطأ في النشر', 'error');
+  }
+
+  [btn, btn2].forEach(b => { if (b) { b.disabled = false; b.textContent = '🚀 نشر على الموقع'; }});
+}
+
+// ===== UI Helpers =====
+let toastTimer;
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toastIcon').textContent = type === 'error' ? '✕' : '✓';
+  toast.classList.toggle('error', type === 'error');
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function showPublishBar() {
+  document.getElementById('publishBar').classList.add('show');
+}
+function hidePublishBar() {
+  document.getElementById('publishBar').classList.remove('show');
+}
+
+// ===== Init =====
+document.getElementById('publishBtn').addEventListener('click', publish);
+document.getElementById('publishBtn2').addEventListener('click', publish);
+document.getElementById('modalOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+loadData();
+</script>
+
+</body>
+</html>
